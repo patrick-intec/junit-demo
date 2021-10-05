@@ -1,12 +1,20 @@
 package be.infernalwhale;
 
+import be.infernalwhale.model.Car;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public class MainTest {
     public static void main(String[] args) {
-        Calculator calc = new Calculator();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("datasource");
+        EntityManager em = emf.createEntityManager();
 
-        int a = 20;
-        int b = 22;
 
-        System.out.println(calc.sum(a, b));
+        Car entityA = new Car();
+        em.getTransaction().begin();
+        em.persist(entityA);
+        em.getTransaction().commit();
     }
 }
